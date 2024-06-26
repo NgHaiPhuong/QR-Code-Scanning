@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanQRCodeActivity"
+    android:background="@color/black_shade_1">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgflash"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/flash"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="15dp"/>
+
+    <FrameLayout
+        android:id="@+id/containerScanner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/imgflash"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

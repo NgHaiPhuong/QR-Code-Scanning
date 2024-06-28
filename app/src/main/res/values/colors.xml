@@ -8,4 +8,5 @@
     <color name="teal_200">#ff03dac5</color>
     <color name="black_shade_1">#292d36</color>
     <color name="yellow">#ffa500</color>
+    <color name="colorTranslucentBlack">#B8B6B6</color>
 </resources>

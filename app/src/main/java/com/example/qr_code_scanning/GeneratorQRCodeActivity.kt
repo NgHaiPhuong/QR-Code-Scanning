@@ -1,5 +1,6 @@
 package com.example.qr_code_scanning
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
@@ -39,5 +40,9 @@ class GeneratorQRCodeActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnScanQR.setOnClickListener {
+            val intent = Intent(this, ScanQRCodeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

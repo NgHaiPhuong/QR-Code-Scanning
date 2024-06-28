@@ -71,4 +71,17 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         app:cornerRadius="5dp" />
+
+    <Button
+        android:id="@+id/btnScanQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnGeneratorQR"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/yellow"
+        android:text="scan_qr_code"
+        android:textAllCaps="true"
+        app:cornerRadius="5dp"
+        android:textColor="@color/white" />
 </RelativeLayout>

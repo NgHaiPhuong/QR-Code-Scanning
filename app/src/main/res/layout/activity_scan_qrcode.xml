@@ -9,10 +9,10 @@
     android:background="@color/black_shade_1">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgflash"
+        android:id="@+id/flashToggle"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/flash"
+        android:background="@drawable/bg_flash_selector"
         android:layout_centerHorizontal="true"
         android:layout_marginVertical="15dp"/>
 
@@ -20,6 +20,7 @@
         android:id="@+id/containerScanner"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/imgflash"
-        android:layout_alignParentBottom="true"/>
+        android:layout_below="@id/flashToggle"
+        android:layout_alignParentBottom="true">
+    </FrameLayout>
 </RelativeLayout>

@@ -52,4 +52,15 @@
         android:text="scan_qr_code"
         android:textAllCaps="true"
         app:cornerRadius="5dp" />
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnScanQR"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/yellow"
+        android:text="History"
+        android:textAllCaps="true"
+        app:cornerRadius="5dp" />
 </RelativeLayout>

@@ -1,7 +1,11 @@
 package com.example.qr_code_scanning
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +20,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 class ScanQRCodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private lateinit var binding : ActivityScanQrcodeBinding
     private lateinit var scannerView : ZXingScannerView
+    private var resultReceived = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityScanQrcodeBinding.inflate(layoutInflater)
@@ -63,6 +68,7 @@ class ScanQRCodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         super.onResume()
         scannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         scannerView.startCamera();
+        startQRCodeScan()
     }
     override fun onPause() {
         super.onPause()
@@ -73,10 +79,34 @@ class ScanQRCodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         super.onDestroy()
         scannerView.stopCamera()
     }
+    private fun startQRCodeScan() {
+        resultReceived = false
+
+        // Schedule a task to check if no result has been received after 10 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (!resultReceived) {
+                Toast.makeText(this, "The QR code was faulty. Please scan again", Toast.LENGTH_SHORT).show()
+                scannerView.resumeCameraPreview(this)
+            }
+        }, 5000)
+    }
     override fun handleResult(result: Result?) {
+        resultReceived = true
+
         result?.let {
-            Toast.makeText(this, "QR Code scanned: ${it.text}", Toast.LENGTH_SHORT).show()
+            val scannerText = it.text
+            if(scannerText == null){
+                Toast.makeText(this, "No QR Code detected. Please try again.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, "QR Code scanned: ${scannerText}", Toast.LENGTH_SHORT).show()
+                if (scannerText.startsWith("http://") || scannerText.startsWith("https://")) {
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(scannerText))
+                    startActivity(browserIntent)
+                }
+            }
         }
         scannerView.resumeCameraPreview(this)
     }
+
 }
